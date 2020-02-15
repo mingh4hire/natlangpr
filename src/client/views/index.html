@@ -1,3 +1,14 @@
+<style>
+th { 
+    text-align:right;
+    font-weight:bold;
+}
+[spacearound]{
+    display:flex;
+    justify-content: space-around;
+}
+</style>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -23,14 +34,42 @@
 
         <main>
             <section>
-                <form class="" onsubmit="return handleSubmit(event)">
+                <form class="" onsubmit="return Client.handleSubmit(event)">
                     <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return handleSubmit(event)" onsubmit="return handleSubmit(event)">
+                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
-
+ 
             <section>
                 <strong>Form Results:</strong>
+                <div>
+                    Text :  <span id='text'></span>
+                </div>
+                <div spacearound>
+                <table>
+                    <tr>
+                        <th>Subjectivity:</th>
+                        <td><div id="subjectivity"></div></td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Polarity:</th>
+                        <td><div id="polarity"></div></td>
+                    </tr>
+                </table>
+                   <table>
+                    <tr>
+                        <th>Subjectivity Confidence:</th>
+                        <td><div id="subjectivity_confidence"></div></td>
+
+                    </tr>
+                        <th>Polarity Confidence:</th>
+                        <td><div id="polarity_confidence"></div></td>
+
+                    <tr>
+                    </tr>
+                </table>
+                </div>
                 <div id="results"></div>
             </section>
         </main>
