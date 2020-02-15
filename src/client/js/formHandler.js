@@ -10,15 +10,29 @@ function handleSubmit(event) {
     fetch('/sentiment', {
             method: 'POST',
             body: JSON.stringify({
-                message: formText + 'text'
+                message: formText
             }),
             headers: {
                 'Content-Type': 'application/json'
             }
 
+        }).catch(err => {
+            alert('Error is ' + err);
+            console.log('err mess is ', err);
+            document.x = err;
         })
-        .then(res => res.json())
+        .then(res => res.json()).catch(err => {
+            alert(err);
+            console.log('err is ', err);
+            document.x = err;
+        })
         .then(function (res) {
+            if (res.meta.code === 400) {
+                console.error('Error')
+                console.log(JSON.stringify(res.meta))
+                alert(res)
+                return;
+            }
             document.getElementById('polarity').innerHTML = res.polarity;
             document.getElementById('subjectivity').innerHTML = res.subjectivity;
             document.getElementById('text').innerHTML = res.text;
@@ -26,6 +40,10 @@ function handleSubmit(event) {
             document.getElementById('subjectivity_confidence').innerHTML = res.subjectivity_confidence;
 
 
+        }).catch(err => {
+            alert('Error message is ' + err);
+            console.log('err mess is ', err);
+            document.x = err;
         })
 }
 

@@ -1,16 +1,26 @@
 function checkForName(inputText) {
-    // console.log("::: Running checkForName :::", inputText);
-    // let names = [
-    //     "Picard",
-    //     "Janeway",
-    //     "Kirk",
-    //     "Archer",
-    //     "Georgiou"
-    // ]
-
-    // if(names.includes(inputText)) {
-    //     alert("Welcome,  O Captain!")
-    // }
+    if (includesname(inputText)) {
+        alert("Welcome,  O Captain!");
+    }
 }
 
-export { checkForName }
+function includesname(inputText) {
+    console.log("::: Running checkForName :::", inputText);
+    let names = [
+        "Picard",
+        "Janeway",
+        "Kirk",
+        "Archer",
+        "Georgiou"
+    ]
+
+    if (names.includes(inputText)) {
+        return true;
+    }
+    return false;
+}
+
+export {
+    checkForName,
+    includesname
+}

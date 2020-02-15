@@ -30,11 +30,18 @@ app.get('/test', function (req, res) {
 
 var AYLIENTextAPI = require('aylien_textapi');
 app.post('/sentiment', (req, res) => {
+    if (!req.body.message) {
+        console.log('err is body empty');
+        res.send(400, {
+            error: 'bad message'
+        });
+        return;
+    }
     var textapi = new AYLIENTextAPI({
         application_id: process.env.API_ID,
         application_key: process.env.API_KEY
     });
-    console.log('in sentimetn with body ' , req.body)
+    console.log('in sentimetn with body ', req.body)
     textapi.sentiment({
         'text': req.body.message
     }, function (error, response) {
