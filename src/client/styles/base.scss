@@ -12,3 +12,15 @@ section {
     max-width: 800px;
     margin: 50px auto;
 }
+
+th {
+    text-align: right;
+    font-weight: bold;
+    background: lightblue;
+
+}
+
+[spacearound] {
+    display: flex;
+    justify-content: space-around;
+}

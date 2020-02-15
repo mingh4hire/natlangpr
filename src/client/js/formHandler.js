@@ -3,7 +3,10 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    Client.checkForName(formText)
+    if (!Client.checkForName(formText)) {
+        alert('Must be at least 5 characers long and less than 100 characters long');
+        return;
+    }
     const formdata = new FormData();
     formdata.append('message', formText)
     console.log("::: Form Submitted :::")
@@ -27,7 +30,7 @@ function handleSubmit(event) {
             document.x = err;
         })
         .then(function (res) {
-            if (res.meta.code === 400) {
+            if (res && res.meta && res.meta.code === 400) {
                 console.error('Error')
                 console.log(JSON.stringify(res.meta))
                 alert(res)
@@ -41,16 +44,11 @@ function handleSubmit(event) {
 
 
         }).catch(err => {
-            alert('Error message is ' + err);
-            console.log('err mess is ', err);
-            document.x = err;
+            alert('Error: ' + err);
         })
 }
 
-function doit() {
-    alert('doit');
-}
+
 export {
     handleSubmit,
-    doit
 }
