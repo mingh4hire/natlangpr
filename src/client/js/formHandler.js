@@ -7,8 +7,6 @@ function handleSubmit(event) {
         alert('Must be at least 5 characers long and less than 100 characters long');
         return;
     }
-    const formdata = new FormData();
-    formdata.append('message', formText)
     console.log("::: Form Submitted :::")
     fetch('/sentiment', {
             method: 'POST',
@@ -19,23 +17,16 @@ function handleSubmit(event) {
                 'Content-Type': 'application/json'
             }
 
-        }).catch(err => {
-            alert('Error is ' + err);
-            console.log('err mess is ', err);
-            document.x = err;
         })
-        .then(res => res.json()).catch(err => {
-            alert(err);
-            console.log('err is ', err);
-            document.x = err;
+        .then(res => {
+
+            console.log('converting to json for ', res)
+            console.log('done');
+            return res.json()
+
         })
         .then(function (res) {
-            if (res && res.meta && res.meta.code === 400) {
-                console.error('Error')
-                console.log(JSON.stringify(res.meta))
-                alert(res)
-                return;
-            }
+
             document.getElementById('polarity').innerHTML = res.polarity;
             document.getElementById('subjectivity').innerHTML = res.subjectivity;
             document.getElementById('text').innerHTML = res.text;
@@ -43,8 +34,15 @@ function handleSubmit(event) {
             document.getElementById('subjectivity_confidence').innerHTML = res.subjectivity_confidence;
 
 
-        }).catch(err => {
-            alert('Error: ' + err);
+        })
+        .catch(err => {
+            console.log('******************')
+            console.log('******************')
+            console.log('******************')
+            console.log('printing code ', err)
+            console.log('******************')
+            console.log('******************')
+            alert('error on return ' + err);
         })
 }
 

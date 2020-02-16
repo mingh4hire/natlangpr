@@ -52,8 +52,8 @@ Next we need to declare our API keys, which will look something like this:
 ```
 // set aylien API credentias
 var textapi = new aylien({
-  application_id: "your-api-id",
-  application_key: "your-key"
+  application_id: process.env.API_ID   //value located in the .env file in root dir,
+  application_key: process.env.API_KEY  //value API_KEY located in the .env file in root dir,
 });
 ```
 
